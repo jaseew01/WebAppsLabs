@@ -3,7 +3,7 @@
 *
 * Contains implementation for a "task" "class"
 */
-var Task, proto;
+var Task, proto, temp;
 // Helper method. You should not need to change it.
 // Use it in makeTaskFromString
 function processString(s) {
@@ -31,27 +31,26 @@ function idCounter() {
 */
 function makeNewTask() {
    "use strict";
-   var temp = Object.create(null), arr = [];
-   temp.title = "";
-   temp.completedTime = null;
+   var myObj = Object.create(proto);
+   myObj.arr = [];
+   myObj.title = "";
+   myObj.completedTime = null;
 
-   Object.defineProperty(temp, "id", {
+   Object.defineProperty(myObj, "id", {
       enumerable: true,
       configurable: false,
       writable: false,
 
-      get: function() {
-         return idCounter();
-      }
+      value: idCounter()
    });
-   Object.defineProperty(temp, "tags", {
+   Object.defineProperty(myObj, "tags", {
       get: function() {
-         return arr;
+         return myObj.arr;
       }
    });
 
-   Object.preventExtensions();
-   return temp;
+   Object.preventExtensions(myObj);
+   return myObj;
 }
 
 function makeTaskFromObject(o) {
@@ -71,7 +70,7 @@ function makeTaskFromString(s) {
 * Prototype / Instance methods
 */
 proto = {
-   setTitle: function(s) {
+   setTitle: function setTitle(s) {
       "use strict";
       this.title = s.trim();
       return this;
@@ -88,7 +87,7 @@ proto = {
    toggleCompleted: function() {
       "use strict";
       var date = new Date();
-      if (this.completedTime == null) {
+      if (this.completedTime === null) {
          this.completedTime = date;
       } else {
          this.completedTime = null;
@@ -98,7 +97,7 @@ proto = {
 
    hasTag: function(s) {
       "use strict";
-      if (this.tags.includes(s)) {
+      if (this.tags.indexOf(s) !== -1) {
          return true;
       }
       return false;
@@ -114,9 +113,9 @@ proto = {
 
    removeTag: function(s) {
       "use strict";
-      var temp = this.tags.indexOf(s);
-      if (temp !== -1) {
-         this.tags.splice(temp, 1);
+      var ind = this.tags.indexOf(s);
+      if (ind !== -1) {
+         this.tags.splice(ind, 1);
       }
       return this;
    },
@@ -133,26 +132,29 @@ proto = {
 
    addTags: function(arr) {
       "use strict";
+      temp = this;
       arr.forEach(function(v, i) {
-         this.addTag(v);
+         temp.addTag(v);
       });
-      return this;
+      return temp;
    },
 
    removeTags: function(arr) {
       "use strict";
+      temp = this;
       arr.forEach(function(v, i) {
-         this.removeTag(v);
+         temp.removeTag(v);
       });
-      return this;
+      return temp;
    },
 
    toggleTags: function(arr) {
       "use strict";
+      temp = this;
       arr.forEach(function(v, i) {
-         this.toggleTag(v);
+         temp.toggleTag(v);
       });
-      return this;
+      return temp;
    },
 
    clone: function() {
@@ -160,7 +162,7 @@ proto = {
       var newObj = new makeNewTask();
       newObj.title = this.title;
       newObj.completedTime = this.completedTime;
-      newObj.tags = this.tags;
+      newObj.addTags(this.tags);
       return newObj;
    }
 };
