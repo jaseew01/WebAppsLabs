@@ -41,6 +41,34 @@ proto = {
 			return true;
 		}
 		return false;
+   },
+
+	get: function(arg){
+		"use strict";
+		var type = typeof arg, task = this.values[ 0 ], acc = 0;
+		if (type === "function"){
+			while (arg(task) !== true){
+				acc += 1;
+				task = this.values[ acc ];
+			}
+		} if (type === "number") {
+			while (arg !== task.id) {
+				acc += 1;
+				task = this.values[ acc ];
+			}
+		} if (type === "string") {
+			while (task.title.indexOf(arg) === -1) {
+				acc += 1;
+				task = this.values[ acc ];
+			}
+		} if (type === "object") {
+			while (task.title.test(arg) === false) {
+				acc += 1;
+				task = this.values[ acc ];
+			}
+		}
+
+		return this.values[ acc ];
    }
 };
 
