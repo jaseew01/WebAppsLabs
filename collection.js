@@ -13,20 +13,28 @@ Task = require("./task");
  */
 
 function makeNewCollection(arr) {
+	"use strict";
+	var myObj = Object.create(proto);
+	Object.defineProperty(myObj, "values", {
+      writable: false,
 
-};
+      value: []
+	});
 
+	Object.preventExtensions(myObj);
+	return myObj;
+}
 
 /*
  *       Prototype / Instance methods
  */
 
 proto = {
-   //Add instance methods here
-
-}
-
-
+   length: function(){
+		"use strict";
+		return this.arr.length;
+   }
+};
 
 // DO NOT MODIFY ANYTHING BELOW THIS LINE
 TaskCollection = {
