@@ -122,6 +122,12 @@ proto = {
 			}
 		});
 		return this;
+	},
+
+	forEach: function(arg) {
+		"use strict";
+		this.values.forEach(arg);
+		return this;
 	}
 };
 
