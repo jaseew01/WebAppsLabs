@@ -51,25 +51,36 @@ proto = {
 				acc += 1;
 				task = this.values[ acc ];
 			}
+			return this.values[ acc ];
 		} if (type === "number") {
 			while (arg !== task.id) {
 				acc += 1;
 				task = this.values[ acc ];
 			}
+			return this.values[ acc ];
 		} if (type === "string") {
 			while (task.title.indexOf(arg) === -1) {
 				acc += 1;
 				task = this.values[ acc ];
 			}
+			return this.values[ acc ];
 		} if (type === "object") {
 			while (task.title.test(arg) === false) {
 				acc += 1;
 				task = this.values[ acc ];
 			}
+			return this.values[ acc ];
 		}
+		return null;
+   },
 
-		return this.values[ acc ];
-   }
+	has: function(arg) {
+		"use strict";
+		if (this.get(arg) === null) {
+			return false;
+		}
+		return true;
+	}
 };
 
 // DO NOT MODIFY ANYTHING BELOW THIS LINE
