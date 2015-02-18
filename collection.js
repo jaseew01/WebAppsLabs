@@ -8,6 +8,22 @@ var TaskCollection, Task, proto;
 
 Task = require("./task");
 
+function printTask(obj) {
+	"use strict";
+	var finalString = "";
+	finalString += obj.title;
+	if (obj.isCompleted()) {
+		finalString += " (" + obj.completedTime + ")";
+	} if (obj.tags.length > 0) {
+		obj.tags.forEach(function(val, index) {
+			finalString += " #" + val;
+		});
+		finalString += "\n";
+	}
+
+	return finalString;
+}
+
 /*
  *       Constructors
  */
@@ -128,6 +144,18 @@ proto = {
 		"use strict";
 		this.values.forEach(arg);
 		return this;
+	},
+
+	print: function() {
+		"use strict";
+		var result = "";
+		if (this.values.length !== 0) {
+			this.values.forEach(function(val, index) {
+				result += printTask(val);
+			});
+		}
+
+		return result;
 	}
 };
 
