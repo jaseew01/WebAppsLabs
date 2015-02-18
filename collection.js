@@ -156,6 +156,15 @@ proto = {
 		}
 
 		return result;
+	},
+
+	concat: function() {
+		"use strict";
+		var i;
+		for (i = 0; i < arguments.length; i += 1) {
+			this.add(arguments[ i ]);
+		}
+		return this;
 	}
 };
 
