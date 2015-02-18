@@ -32,7 +32,7 @@ function makeNewCollection(arr) {
 proto = {
    length: function(){
 		"use strict";
-		return this.arr.length;
+		return this.values.length;
    },
 
    isEmpty: function(){
@@ -80,6 +80,21 @@ proto = {
 			return false;
 		}
 		return true;
+	},
+
+	add: function(arg) {
+		"use strict";
+		var addOneTask = function(newTask, index) {
+			if (!this.has(arg)) {
+				this.values.push(newTask);
+			}
+		};
+		if (Array.isArray(arg)) {
+			arg.forEach(addOneTask);
+			return this;
+		}
+		addOneTask(arg, -1);
+		return this;
 	}
 };
 
