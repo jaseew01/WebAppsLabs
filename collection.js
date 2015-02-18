@@ -95,6 +95,12 @@ proto = {
 		}
 		addOneTask(arg, -1);
 		return this;
+	},
+
+	new: function() {
+		var task = Task.new;
+		this.add(task);
+		return task;
 	}
 };
 
