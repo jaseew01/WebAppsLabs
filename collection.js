@@ -98,9 +98,30 @@ proto = {
 	},
 
 	new: function() {
+		"use strict";
 		var task = Task.new;
 		this.add(task);
 		return task;
+	},
+
+	remove: function(arg) {
+		"use strict";
+		var removeTasks = function(val, index) {
+			if (arg.indexOf(val.id) !== -1) {
+				this.values.splice(index, 1);
+			}
+		};
+		if (Array.isArray(arg)) {
+			this.values.forEach(removeTasks);
+			return this;
+		}
+
+		this.values.forEach(function(val, index) {
+			if (val.id === arg) {
+				this.values.splice(index, 1);
+			}
+		});
+		return this;
 	}
 };
 
