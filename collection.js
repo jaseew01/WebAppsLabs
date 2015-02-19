@@ -68,37 +68,46 @@ proto = {
 	get: function(arg){
 		"use strict";
 		var type = typeof arg, task = this.values[ 0 ], acc = 0;
-		if (type === "function"){
-			while (arg(task) !== true){
+		if (type === "function" && this.length() !== 0){
+			while (arg(task) !== true && acc+1<this.length()){
 				acc += 1;
 				task = this.values[ acc ];
 			}
-			return this.values[ acc ];
-		} if (type === "number") {
-			while (arg !== task.id) {
+			if (arg(task) === true) {
+				return task;
+			}
+		}else if (type === "number" && this.length() !== 0) {
+			while (arg !== task.id && acc+1<this.length()) {
+				acc += 1;
+				task = this.values[ acc ];
+				console.log(task);
+			}
+			if (arg === task.id) {
+				return task;
+			}
+		}else if (type === "string" && this.length() !== 0) {
+			while (task.title.indexOf(arg) === -1 && acc+1<this.length()) {
 				acc += 1;
 				task = this.values[ acc ];
 			}
-			return this.values[ acc ];
-		} if (type === "string") {
-			while (task.title.indexOf(arg) === -1) {
+			if (task.title.indexOf(arg) !== -1) {
+				return task;
+			}
+		}else if (type === "object" && this.length() !== 0) {
+			while (arg.test(task.title) === false && acc+1<this.length()) {
 				acc += 1;
 				task = this.values[ acc ];
 			}
-			return this.values[ acc ];
-		} if (type === "object") {
-			while (task.title.test(arg) === false) {
-				acc += 1;
-				task = this.values[ acc ];
+			if (arg.test(task.title) === true) {
+				return task;
 			}
-			return this.values[ acc ];
 		}
 		return null;
    },
 
 	has: function(arg) {
 		"use strict";
-		if (this.get(arg) === null) {
+		if (this.get(arg.title) === null) {
 			return false;
 		}
 		return true;
@@ -106,17 +115,18 @@ proto = {
 
 	add: function(arg) {
 		"use strict";
+		var that = this;
 		var addOneTask = function(newTask, index) {
-			if (!this.has(arg)) {
-				this.values.push(newTask);
+			if (!that.has(arg)) {
+				that.values.push(newTask);
 			}
 		};
 		if (Array.isArray(arg)) {
 			arg.forEach(addOneTask);
-			return this;
+			return that;
 		}
 		addOneTask(arg, -1);
-		return this;
+		return that;
 	},
 
 	new: function() {
@@ -128,22 +138,24 @@ proto = {
 
 	remove: function(arg) {
 		"use strict";
+		var that = this;
 		var removeTasks = function(val, index) {
 			if (arg.indexOf(val.id) !== -1) {
-				this.values.splice(index, 1);
+				that.values.splice(index, 1);
 			}
 		};
 		if (Array.isArray(arg)) {
-			this.values.forEach(removeTasks);
-			return this;
+			that.values.forEach(removeTasks);
+			return that;
 		}
 
 		this.values.forEach(function(val, index) {
 			if (val.id === arg) {
-				this.values.splice(index, 1);
+				that.values.splice(index, 1);
 			}
 		});
-		return this;
+		console.log("length", that.values.length, this.values.length);
+		return that;
 	},
 
 	filter: function(arg) {
