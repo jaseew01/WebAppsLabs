@@ -10,8 +10,20 @@ expect = require('./chai.js').expect;
 Task = require('./task.js');
 TaskCollection = require('./collection.js');
 
-myCollection = TaskCollection.new();
-myCollection2 = TaskCollection.new([Task.new, Task.new]);
+var myCollection = TaskCollection.new();
+var myCollection2 = TaskCollection.new([Task.new, Task.new]);
+var myCollection3 = TaskCollection.new();
+var obj = {
+	title: "test",
+	tags: ["one", "two"]
+},obj2 = {
+	title: "test2",
+	tags: ["three", "four"]
+};
+var task1 = Task.fromObject(obj);
+var task2 = Task.fromObject(obj2);
+var task3 = Task.new();
+myCollection3.add([task1,task2]);
 
 // ADD YOUR TESTS HERE
 describe("Testing the collection constructor", function() {
@@ -35,4 +47,3 @@ describe("Testing collection prototype methods", function() {
 		expect(myCollection.isEmpty()).to.equal(true);
 		expect(myCollection2.isEmpty()).to.equal(false);
 	});
-});

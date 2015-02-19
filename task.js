@@ -26,6 +26,7 @@ function idCounter() {
    };
 }
 
+var counter = idCounter();
 /*
 * Constructors
 */
@@ -41,7 +42,7 @@ function makeNewTask() {
       configurable: false,
       writable: false,
 
-      value: idCounter()
+      value: counter()
    });
    Object.defineProperty(myObj, "tags", {
       get: function() {
@@ -55,7 +56,7 @@ function makeNewTask() {
 
 function makeTaskFromObject(o) {
    "use strict";
-   var newTask = Task.new;
+   var newTask = Task.new();
    newTask.setTitle(o.title);
    newTask.addTags(o.tags);
    return newTask;
