@@ -140,6 +140,45 @@ proto = {
 		return this;
 	},
 
+	filter: function(arg) {
+		"use strict";
+		var type = typeof arg, acc = 0, collection = TaskCollection.new;
+
+		if (type === "function"){
+			while (acc < this.values.length){
+				if (arg(this.values[ acc ])) {
+					collection.add(this.values[ acc ]);
+				}
+				acc += 1;
+			}
+			return collection;
+		} if (Array.isArray(arg)) {
+			while (acc < this.values.length){
+				if (arg.includes(this.values[ acc ].id)) {
+					collection.add(this.values[ acc ]);
+				}
+				acc += 1;
+			}
+			return collection;
+		} if (type === "string") {
+			while (acc < this.values.length){
+				if (this.values[ acc ].title === arg) {
+					collection.add(this.values[ acc ]);
+				}
+				acc += 1;
+			}
+			return collection;
+		} if (type === "object") {
+			while (acc < this.values.length){
+				if (this.values[ acc ].title.test(arg) === true) {
+					collection.add(this.values[ acc ]);
+				}
+				acc += 1;
+			}
+			return collection;
+		}
+	},
+
 	forEach: function(arg) {
 		"use strict";
 		this.values.forEach(arg);
