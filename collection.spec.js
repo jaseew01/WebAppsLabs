@@ -61,7 +61,10 @@ describe("Testing collection prototype methods", function() {
 		expect(myCollection3.get(3)).to.equal(null);
 	});
 	it("Testing the has method", function() {
-		//
+		expect(myCollection3.has(1)).to.equal(true);
+		expect(myCollection3.has("test")).to.equal(true);
+		expect(myCollection3.has(/test2/)).to.equal(true);
+		expect(myCollection3.has(3)).to.equal(false);
 	});
 	it.skip("Testing the add method", function() {
 		expect(myCollection3.length()).to.equal(2);

@@ -80,7 +80,6 @@ proto = {
 			while (arg !== task.id && acc+1<this.length()) {
 				acc += 1;
 				task = this.values[ acc ];
-				console.log(task);
 			}
 			if (arg === task.id) {
 				return task;
@@ -107,7 +106,7 @@ proto = {
 
 	has: function(arg) {
 		"use strict";
-		if (this.get(arg.title) === null) {
+		if (this.get(arg) === null) {
 			return false;
 		}
 		return true;
@@ -117,7 +116,7 @@ proto = {
 		"use strict";
 		var that = this;
 		var addOneTask = function(newTask, index) {
-			if (!that.has(arg)) {
+			if (!that.has(arg.title)) {
 				that.values.push(newTask);
 			}
 		};
