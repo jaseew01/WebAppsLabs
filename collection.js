@@ -30,11 +30,18 @@ function printTask(obj) {
 
 function makeNewCollection(arr) {
 	"use strict";
-	var myObj = Object.create(proto);
+	var myObj = Object.create(proto), val = [];
+
+	if (Array.isArray(arr)) {
+		arr.forEach(function(v, i) {
+			val.push(v);
+		});
+	}
+
 	Object.defineProperty(myObj, "values", {
       writable: false,
 
-      value: []
+      value: val
 	});
 
 	Object.preventExtensions(myObj);
@@ -189,18 +196,19 @@ proto = {
 		"use strict";
 		var finalObj = {};
 
-		this.forEach(function(val,index) {
-			val.tags.forEach(function(v,i) {
+		this.forEach(function(val, index) {
+			val.tags.forEach(function(v, i) {
 				if (!finalObj.hasOwnProperty(v)) {
-					finalObj[v] = TaskCollection.new.add(val);
+					finalObj[ v ] = TaskCollection.new.add(val);
 				} else {
-					finalObj[v].add(val);
+					finalObj[ v ].add(val);
 				}
 			});
 		});
 
 		return finalObj;
-	}
+	},
+
 
 	print: function() {
 		"use strict";
