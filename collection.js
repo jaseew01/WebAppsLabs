@@ -39,9 +39,8 @@ function makeNewCollection(arr) {
 	}
 
 	Object.defineProperty(myObj, "values", {
-      writable: false,
-
-      value: val
+		writable: false,
+		value: val
 	});
 
 	Object.preventExtensions(myObj);
