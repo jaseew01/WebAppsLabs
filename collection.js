@@ -185,6 +185,23 @@ proto = {
 		return this;
 	},
 
+	groupByTag: function() {
+		"use strict";
+		var finalObj = {};
+
+		this.forEach(function(val,index) {
+			val.tags.forEach(function(v,i) {
+				if (!finalObj.hasOwnProperty(v)) {
+					finalObj[v] = TaskCollection.new.add(val);
+				} else {
+					finalObj[v].add(val);
+				}
+			});
+		});
+
+		return finalObj;
+	}
+
 	print: function() {
 		"use strict";
 		var result = "";

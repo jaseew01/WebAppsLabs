@@ -71,11 +71,11 @@ These will all go into the `proto` object. It should contain no other properties
     It may also instead be given as argument an array of task objects. In that case, it should add all the task objects, if they do not already exist in the list. You may find it helpful to use some sort of private "addOneTask" function.
 
     Returns `this` (the collection).
-- **new**: Not to be confused with the class-level method new, nor the Task class's new. Takes no arguments. Creates a new task object (by calling `Task.new`), adds it to the collection, then returns the new task object.
+- **new**: Not to be confused with the class-level method new, nor the Task class's new. Takes no arguments. Creates a new task object (by y4calling `Task.new`), adds it to the collection, then returns the new task object.
 - **remove**: Expects as argument a single number or array of numbers. It interprets those numbers as the id's of the tasks you want to have removed. Then removes those tasks from the list, if they were present. Returns `this` (the collection).
 - **filter**: Expects its argument in the same formats as `get`, except that in the case of a single number it expects to be provided an array of numbers instead. It returns a *new* TaskCollection containing those tasks that match the criteria (not clones, the tasks themselves; only the collection would be new).
 - **forEach**: Takes as argument a function `f(task)`. It will call the function on each element in its `values` array, passing it the task as the single argument. Returns `this`.
-- **groupByTag**: Takes no arguments. Returns the tasks grouped by tag. Namely the return value should be an object, whose keys are all the different tags of the various tasks in the collection. The value corresponding to a key/tag should be a new TaskCollection containing the tasks that had that key/tag (not clones, the tasks themselves). A task with no keys would not appear at all in this object.
+- **groupByTag**: Takes no arguments. Returns the tasks grouped by their tags. Namely the return value should be an object, whose keys are all the different tags of the various tasks in the collection. The value corresponding to a key/tag should be a new TaskCollection containing the tasks that had that key/tag (not clones, the tasks themselves). A task with no keys would not appear at all in this object.
 - **print**: Takes no arguments. Should return a printed representation of the task collection as follows:
     - It should return a string (not console.logging).
     - Each task starts on a new line.
