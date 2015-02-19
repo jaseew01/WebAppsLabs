@@ -59,7 +59,7 @@ proto = {
 
    isEmpty: function(){
 		"use strict";
-		if (this.length === 0) {
+		if (this.length() === 0) {
 			return true;
 		}
 		return false;

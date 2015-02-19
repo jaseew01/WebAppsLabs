@@ -31,4 +31,8 @@ describe("Testing collection prototype methods", function() {
 		expect(myCollection.length()).to.equal(0);
 		expect(myCollection2.length()).to.equal(2);
 	});
+	it("Testing the isEmpty method", function() {
+		expect(myCollection.isEmpty()).to.equal(true);
+		expect(myCollection2.isEmpty()).to.equal(false);
+	});
 });
