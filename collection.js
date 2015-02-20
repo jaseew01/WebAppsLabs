@@ -163,7 +163,7 @@ proto = {
 
 	filter: function(arg) {
 		"use strict";
-		var type = typeof arg, acc = 0, collection = TaskCollection.new;
+		var type = typeof arg, acc = 0, collection = TaskCollection.new();
 
 		if (type === "function"){
 			while (acc < this.values.length){
@@ -175,7 +175,7 @@ proto = {
 			return collection;
 		} if (Array.isArray(arg)) {
 			while (acc < this.values.length){
-				if (arg.includes(this.values[ acc ].id)) {
+				if (arg.indexOf(this.values[ acc ].id) !== -1) {
 					collection.add(this.values[ acc ]);
 				}
 				acc += 1;
@@ -191,7 +191,7 @@ proto = {
 			return collection;
 		} if (type === "object") {
 			while (acc < this.values.length){
-				if (this.values[ acc ].title.test(arg) === true) {
+				if (arg.test(this.values[ acc ].title) === true) {
 					collection.add(this.values[ acc ]);
 				}
 				acc += 1;

@@ -90,6 +90,16 @@ describe("Testing collection prototype methods", function() {
 		expect(myCollection4.remove([2,3]).length()).to.equal(0);
 	});
 	it("Testing the filter method", function() {
-		//
+		var temp = function(arg) {
+			if(arg.title === "test3") {
+				return true;
+			}
+			return false;
+		}
+		expect(myCollection3.length()).to.equal(3);
+		expect(myCollection3.filter("test2").length()).to.equal(1);
+		expect(myCollection3.filter([1,2]).length()).to.equal(2);
+		expect(myCollection3.filter(/test/).length()).to.equal(3);
+		expect(myCollection3.filter(temp).length()).to.equal(1);
 	});
 });
