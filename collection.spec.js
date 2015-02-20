@@ -19,10 +19,13 @@ var obj = {
 },obj2 = {
 	title: "test2",
 	tags: ["three", "four"]
+},obj3 = {
+	title: "test3",
+	tags: ["five", "six"]
 };
 var task1 = Task.fromObject(obj);
 var task2 = Task.fromObject(obj2);
-var task3 = Task.new();
+var task3 = Task.fromObject(obj3);
 myCollection3.add([task1,task2]);
 
 // ADD YOUR TESTS HERE
@@ -66,19 +69,21 @@ describe("Testing collection prototype methods", function() {
 		expect(myCollection3.has(/test2/)).to.equal(true);
 		expect(myCollection3.has(3)).to.equal(false);
 	});
-	it.skip("Testing the add method", function() {
+	it("Testing the add method", function() {
 		expect(myCollection3.length()).to.equal(2);
-		myCollection3.add(task1);
+		myCollection3.add(task3);
 		expect(myCollection3.length()).to.equal(3);
 		myCollection3.add([task1,task2]);
-		expect(myCollection3.length()).to.equal(5);
+		expect(myCollection3.length()).to.equal(3);
+		myCollection3.add(task1);
+		expect(myCollection3.length()).to.equal(3);
 	});
 	it("Testing the new method", function() {
 		expect(myCollection2.length()).to.equal(2);
 		myCollection2.new();
 		expect(myCollection2.length()).to.equal(3);
 	});
-	it.skip("Testing the remove method", function() {
+	it("Testing the remove method", function() {
 		var myCollection4 = TaskCollection.new([task1, task2, task3]);
 		expect(myCollection4.length()).to.equal(3);
 		expect(myCollection4.remove(1).length()).to.equal(2);

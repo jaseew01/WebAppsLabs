@@ -115,17 +115,19 @@ proto = {
 	add: function(arg) {
 		"use strict";
 		var that = this;
-		var addOneTask = function(newTask, index) {
-			if (!that.has(arg.title)) {
-				that.values.push(newTask);
+		var addOneTask = function(val, index) {
+			if (that.has(val.id) === false) {
+				that.values.push(val);
 			}
 		};
 		if (Array.isArray(arg)) {
 			arg.forEach(addOneTask);
 			return that;
 		}
-		addOneTask(arg, -1);
-		return that;
+		if(this.has(arg.title) === false) {
+			this.values.push(arg);
+		}
+		return this;
 	},
 
 	new: function() {
@@ -138,13 +140,15 @@ proto = {
 	remove: function(arg) {
 		"use strict";
 		var that = this;
-		var removeTasks = function(val, index) {
-			if (arg.indexOf(val.id) !== -1) {
-				that.values.splice(index, 1);
-			}
-		};
+
 		if (Array.isArray(arg)) {
-			that.values.forEach(removeTasks);
+			for(var i=0; i<this.values.length; i+=1) {
+				if (arg.indexOf(this.values[i].id) >= 0) {
+					that.values.splice(i, 1);
+					i=-1;
+				}
+			}
+
 			return that;
 		}
 
@@ -153,7 +157,7 @@ proto = {
 				that.values.splice(index, 1);
 			}
 		});
-		console.log("length", that.values.length, this.values.length);
+
 		return that;
 	},
 
