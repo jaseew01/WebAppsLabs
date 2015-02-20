@@ -13,7 +13,8 @@ function printTask(obj) {
 	var finalString = "";
 	finalString += obj.title;
 	if (obj.isCompleted()) {
-		finalString += " (" + obj.completedTime + ")";
+		var myDate = obj.completedTime.getFullYear() + "/" + obj.completedTime.getMonth() + "/" + obj.completedTime.getDay();
+		finalString += " (" + myDate + ")";
 	} if (obj.tags.length > 0) {
 		obj.tags.forEach(function(val, index) {
 			finalString += " #" + val;
@@ -233,7 +234,7 @@ proto = {
 			});
 		}
 
-		return result;
+		return result.trim();
 	},
 
 	concat: function() {

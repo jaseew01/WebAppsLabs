@@ -125,4 +125,17 @@ describe("Testing collection prototype methods", function() {
 		expect(myObj.five.has("test3")).to.equal(true);
 		expect(myObj.four.has("a")).to.equal(false);
 	});
+	it("Testing the print method", function() {
+		expect(myCollection3.length()).to.equal(3);
+		myCollection3.values[1].toggleCompleted();
+		var myDate = myCollection3.values[1].completedTime.getFullYear() + "/" + myCollection3.values[1].completedTime.getMonth() + "/" + myCollection3.values[1].completedTime.getDay();
+		var output = myCollection3.print();
+		var actual = [["test","#one","#two", "#works"],["test2", "("+myDate+")", "#three", "#four", "#works"],["test3", "#five", "#six", "#works"]];
+
+		output.split('\n').forEach(function(v, i) {
+			v.split(" ").forEach(function(val, ind) {
+				expect(val).to.equal(actual[i][ind]);
+			});
+		});
+	});
 });
