@@ -10,10 +10,12 @@ Task = require("./task");
 
 function printTask(obj) {
 	"use strict";
-	var finalString = "";
+	var finalString = "", myDate;
+
 	finalString += obj.title;
 	if (obj.isCompleted()) {
-		var myDate = obj.completedTime.getFullYear() + "/" + obj.completedTime.getMonth() + "/" + obj.completedTime.getDay();
+		myDate = obj.completedTime.getFullYear() + "/" + obj.completedTime.getMonth();
+		myDate += "/" + obj.completedTime.getDay();
 		finalString += " (" + myDate + ")";
 	} if (obj.tags.length > 0) {
 		obj.tags.forEach(function(val, index) {
@@ -70,7 +72,7 @@ proto = {
 		"use strict";
 		var type = typeof arg, task = this.values[ 0 ], acc = 0;
 		if (type === "function" && this.length() !== 0){
-			while (arg(task) !== true && acc+1<this.length()){
+			while (arg(task) !== true && acc + 1 < this.length()){
 				acc += 1;
 				task = this.values[ acc ];
 			}
@@ -78,7 +80,7 @@ proto = {
 				return task;
 			}
 		}else if (type === "number" && this.length() !== 0) {
-			while (arg !== task.id && acc+1<this.length()) {
+			while (arg !== task.id && acc + 1 < this.length()) {
 				acc += 1;
 				task = this.values[ acc ];
 			}
@@ -86,7 +88,7 @@ proto = {
 				return task;
 			}
 		}else if (type === "string" && this.length() !== 0) {
-			while (task.title.indexOf(arg) === -1 && acc+1<this.length()) {
+			while (task.title.indexOf(arg) === -1 && acc + 1 < this.length()) {
 				acc += 1;
 				task = this.values[ acc ];
 			}
@@ -94,7 +96,7 @@ proto = {
 				return task;
 			}
 		}else if (type === "object" && this.length() !== 0) {
-			while (arg.test(task.title) === false && acc+1<this.length()) {
+			while (arg.test(task.title) === false && acc + 1 < this.length()) {
 				acc += 1;
 				task = this.values[ acc ];
 			}
@@ -115,8 +117,7 @@ proto = {
 
 	add: function(arg) {
 		"use strict";
-		var that = this;
-		var addOneTask = function(val, index) {
+		var that = this, addOneTask = function(val, index) {
 			if (that.has(val.id) === false) {
 				that.values.push(val);
 			}
@@ -125,7 +126,7 @@ proto = {
 			arg.forEach(addOneTask);
 			return that;
 		}
-		if(this.has(arg.title) === false) {
+		if (this.has(arg.title) === false) {
 			this.values.push(arg);
 		}
 		return this;
@@ -140,13 +141,13 @@ proto = {
 
 	remove: function(arg) {
 		"use strict";
-		var that = this;
+		var that = this, i;
 
 		if (Array.isArray(arg)) {
-			for(var i=0; i<this.values.length; i+=1) {
-				if (arg.indexOf(this.values[i].id) >= 0) {
+			for (i = 0; i < this.values.length; i += 1) {
+				if (arg.indexOf(this.values[ i ].id) >= 0) {
 					that.values.splice(i, 1);
-					i=-1;
+					i = -1;
 				}
 			}
 
@@ -241,7 +242,7 @@ proto = {
 		"use strict";
 		var i;
 		for (i = 0; i < arguments.length; i += 1) {
-			this.add(arguments[ i ]);
+			this.add(arguments[ i ].values);
 		}
 		return this;
 	}

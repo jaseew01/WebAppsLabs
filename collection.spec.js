@@ -138,4 +138,10 @@ describe("Testing collection prototype methods", function() {
 			});
 		});
 	});
+	it("Testing the concat method", function() {
+		expect(myCollection3.length()).to.equal(3);
+		expect(myCollection2.length()).to.equal(3);
+		myCollection3.concat(myCollection2);
+		expect(myCollection3.length()).to.equal(6);
+	});
 });
