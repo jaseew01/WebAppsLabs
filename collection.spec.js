@@ -102,4 +102,14 @@ describe("Testing collection prototype methods", function() {
 		expect(myCollection3.filter(/test/).length()).to.equal(3);
 		expect(myCollection3.filter(temp).length()).to.equal(1);
 	});
+	it("Testing the forEach method", function() {
+		var myFunc = function(t) {
+			t.addTag("works");
+		}
+		expect(myCollection3.length()).to.equal(3);
+		myCollection3.forEach(myFunc);
+		myCollection3.values.forEach(function(v,i) {
+			expect(v.tags[v.tags.length-1]).to.equal("works");
+		});
+	});
 });
