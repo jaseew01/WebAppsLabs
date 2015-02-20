@@ -213,7 +213,7 @@ proto = {
 		this.forEach(function(val, index) {
 			val.tags.forEach(function(v, i) {
 				if (!finalObj.hasOwnProperty(v)) {
-					finalObj[ v ] = TaskCollection.new.add(val);
+					finalObj[ v ] = TaskCollection.new().add(val);
 				} else {
 					finalObj[ v ].add(val);
 				}

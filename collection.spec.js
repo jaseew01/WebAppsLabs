@@ -112,4 +112,17 @@ describe("Testing collection prototype methods", function() {
 			expect(v.tags[v.tags.length-1]).to.equal("works");
 		});
 	});
+	it("Testing the groupByTag method", function() {
+		var myObj;
+		expect(myCollection3.length()).to.equal(3);
+		myObj = myCollection3.groupByTag();
+		expect(myObj.hasOwnProperty("works")).to.equal(true);
+		expect(myObj.hasOwnProperty("one")).to.equal(true);
+		expect(myObj.hasOwnProperty("two")).to.equal(true);
+		expect(myObj.hasOwnProperty("five")).to.equal(true);
+		expect(myObj.hasOwnProperty("ten")).to.equal(false);
+		expect(myObj.one.has("test")).to.equal(true);
+		expect(myObj.five.has("test3")).to.equal(true);
+		expect(myObj.four.has("a")).to.equal(false);
+	});
 });
