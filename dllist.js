@@ -104,7 +104,7 @@ proto = {
       } else {
          this.sentinel.prev = this.sentinel.prev.prev;
          this.sentinel.prev.prev.next = this.sentinel;
-         return temp.data;
+         return temp.value;
       }
    },
 
@@ -115,12 +115,19 @@ proto = {
       } else {
          this.sentinel.next = this.sentinel.next.next;
          this.sentinel.next.next.prev = this.sentinel;
-         return temp.data;
+         return temp.value;
       }
    },
 
    isFirst: function(element) {
       if (this.sentinel.next === element) {
+         return true;
+      }
+      return false;
+   },
+
+   isLast: function(element) {
+      if (this.sentinel.prev === element) {
          return true;
       }
       return false;
