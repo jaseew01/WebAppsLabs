@@ -52,6 +52,14 @@ proto = {
       } else {
          return this.sentinel.next;
       }
+   },
+
+   last: function() {
+      if (this.isEmpty()) {
+         throw "List is empty";
+      } else {
+         return this.sentinel.prev;
+      }
    }
 };
 
