@@ -68,6 +68,16 @@ proto = {
       newElem.next = element.next;
       newElem.prev = element;
       element.next = newElem;
+      return newElem;
+   },
+
+   unshift: function(value) {
+      var newElem;
+      newElem = { value: value };
+      newElem.next = this.sentinel.next;
+      newElem.prev = this.sentinel;
+      this.sentinel.next = newElem;
+      return newElem;
    }
 };
 
