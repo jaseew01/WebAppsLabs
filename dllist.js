@@ -144,6 +144,13 @@ proto = {
          temp = temp.next;
       }
       return this;
+   },
+
+   toArray: function() {
+      var temp = this.sentinel.next, len = this.length(), i;
+      for (i = 0; i < len; i += 1) {
+         // not sure how to implement
+      }
    }
 };
 
