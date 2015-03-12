@@ -131,6 +131,10 @@ proto = {
          return true;
       }
       return false;
+   },
+
+   iterator: function() {
+      return Iterator;
    }
 };
 
