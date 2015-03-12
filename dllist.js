@@ -111,12 +111,19 @@ proto = {
    shift: function() {
       var temp = this.sentinel.next;
       if (this.isEmpty()) {
-         throw "List is empty."
+         throw "List is empty.";
       } else {
          this.sentinel.next = this.sentinel.next.next;
          this.sentinel.next.next.prev = this.sentinel;
          return temp.data;
       }
+   },
+
+   isFirst: function(element) {
+      if (this.sentinel.next === element) {
+         return true;
+      }
+      return false;
    }
 };
 
