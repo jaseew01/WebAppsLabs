@@ -78,6 +78,15 @@ proto = {
       newElem.prev = this.sentinel;
       this.sentinel.next = newElem;
       return newElem;
+   },
+
+   push: function(value) {
+      var newElem;
+      newElem = { value: value };
+      newElem.next = this.sentinel;
+      newElem.prev = this.sentinel.prev;
+      this.sentinel.prev = newElem;
+      return newElem;
    }
 };
 
