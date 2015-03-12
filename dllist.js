@@ -32,9 +32,8 @@ proto = {
    isEmpty: function() {
       if (this.sentinel.next === this.sentinel) {
          return true;
-      } else {
-         return false;
       }
+      return false;
    },
 
    length: function() {
@@ -49,17 +48,15 @@ proto = {
    first: function() {
       if (this.isEmpty()) {
          throw "List is empty";
-      } else {
-         return this.sentinel.next;
       }
+      return this.sentinel.next;
    },
 
    last: function() {
       if (this.isEmpty()) {
          throw "List is empty";
-      } else {
-         return this.sentinel.prev;
       }
+      return this.sentinel.prev;
    },
 
    insertAt: function(value, element) {
@@ -92,6 +89,12 @@ proto = {
    endAt: function(element) {
       element.next = this.sentinel;
       this.sentinel.prev = element;
+   },
+
+   remove: function(element) {
+      element.prev.next = element.next;
+      element.next.prev = element.prev;
+      return element.value;
    }
 };
 
