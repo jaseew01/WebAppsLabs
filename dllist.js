@@ -95,6 +95,17 @@ proto = {
       element.prev.next = element.next;
       element.next.prev = element.prev;
       return element.value;
+   },
+
+   pop: function() {
+      var temp = this.sentinel.prev;
+      if (this.isEmpty()) {
+         throw "List is empty.";
+      } else {
+         this.sentinel.prev = this.sentinel.prev.prev;
+         this.sentinel.prev.prev.next = this.sentinel;
+         return temp.data;
+      }
    }
 };
 
