@@ -135,6 +135,15 @@ proto = {
 
    iterator: function() {
       return Iterator;
+   },
+
+   forEach: function(f) {
+      var temp = this.sentinel.next, len = this.length(), i;
+      for (i = 0; i < len; i += 1) {
+         this.iterator().forEach(f(temp.value));
+         temp = temp.next;
+      }
+      return this;
    }
 };
 
