@@ -87,6 +87,11 @@ proto = {
       newElem.prev = this.sentinel.prev;
       this.sentinel.prev = newElem;
       return newElem;
+   },
+
+   endAt: function(element) {
+      element.next = this.sentinel;
+      this.sentinel.prev = element;
    }
 };
 
