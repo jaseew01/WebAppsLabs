@@ -35,8 +35,15 @@ proto = {
       } else {
          return false;
       }
+   },
+   length: function() {
+      var temp = this.sentinel, acc;
+      while (temp.next !== this.sentinel) {
+         acc += 1;
+         temp = temp.next;
+      }
+      return acc;
    }
-
 };
 
 
