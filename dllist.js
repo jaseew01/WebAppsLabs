@@ -36,6 +36,7 @@ proto = {
          return false;
       }
    },
+
    length: function() {
       var temp = this.sentinel, acc;
       while (temp.next !== this.sentinel) {
@@ -43,6 +44,14 @@ proto = {
          temp = temp.next;
       }
       return acc;
+   },
+
+   first: function() {
+      if (this.isEmpty()) {
+         throw "List is empty";
+      } else {
+         return this.sentinel.next;
+      }
    }
 };
 
