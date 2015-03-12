@@ -60,6 +60,14 @@ proto = {
       } else {
          return this.sentinel.prev;
       }
+   },
+
+   insertAt: function(value, element) {
+      var newElem;
+      newElem = { value: value };
+      newElem.next = element.next;
+      newElem.prev = element;
+      element.next = newElem;
    }
 };
 
