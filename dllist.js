@@ -110,8 +110,8 @@ proto = {
       if (this.isEmpty()) {
          throw new Error("List is empty");
       } else {
-         this.sentinel.prev = this.sentinel.prev.prev;
-         this.sentinel.prev.prev.next = this.sentinel;
+         this.sentinel.prev = temp.prev;
+         this.sentinel.prev.next = this.sentinel;
          return temp.value;
       }
    },

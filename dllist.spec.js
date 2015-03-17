@@ -71,8 +71,12 @@ describe("Testing the proto methods", function() {
 		expect(myList.length()).to.equal(3);
 	});
 
-	it("Testing the length method", function() {
-		//
+	it("Testing the pop method", function() {
+		expect(myList.pop()).to.equal(4);
+		expect(myList.length()).to.equal(2);
+		expect(myList.pop()).to.equal(3);
+		expect(myList.pop()).to.equal(1);
+		expect(myList.length()).to.equal(0);
 	});
 
 	it("Testing the length method", function() {
