@@ -45,6 +45,14 @@ proto = {
    			throw new Error("no more commands");
    		}
    		this.current = this.current.next;
+   		this.current.execute();
+   },
+   undo: function() {
+   		if(this.current === null) {
+   			throw new Error("no more commmands");
+   		}
+   		this.current.unexecute();
+   		this.current = this.current.prev;
    }
 };
 
