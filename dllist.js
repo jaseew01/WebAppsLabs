@@ -157,6 +157,12 @@ proto = {
       var itr = this.iterator(), index;
       index = itr.find(element);
       return itr.sequence(index, this.length(), 1);
+   },
+
+   reverseIterateFrom: function(element) {
+      var itr = this.iterator(), index;
+      index = itr.find(element);
+      return itr.sequence(index, this.first(), -1);
    }
 };
 
