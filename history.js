@@ -63,7 +63,19 @@ proto = {
    },
 
    undoableIterator: function() {
-      return this.list.reverseIteratorFrom(this.current);
+      if (canUndo()) {
+         return this.list.reverseIteratorFrom(this.current);
+      } else {
+         throw new Error("no more commands");
+      }
+   },
+
+   redoableIterator: function() {
+      if (canRedo()) {
+         return this.list.iterateFrom(this.current);
+      } else {
+         throw new Error("no more commands");
+      }
    }
 };
 
