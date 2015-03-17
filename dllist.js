@@ -121,7 +121,7 @@ proto = {
       if (this.isEmpty()) {
          throw new Error("List is empty");
       } else {
-         this.sentinel.next = this.sentinel.next.next;
+         this.sentinel.next = temp.next;
          this.sentinel.next.next.prev = this.sentinel;
          return temp.value;
       }
