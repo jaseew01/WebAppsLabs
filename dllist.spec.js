@@ -98,8 +98,9 @@ describe("Testing the proto methods", function() {
 		expect(myList.isFirst(myList.first().next)).to.equal(false);
 	});
 
-	it("Testing the length method", function() {
-		//
+	it("Testing the isLast method", function() {
+		expect(myList.isLast(myList.last())).to.equal(true);
+		expect(myList.isLast(myList.last().prev)).to.equal(false);
 	});
 
 	it("Testing the length method", function() {
