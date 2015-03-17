@@ -60,8 +60,15 @@ describe("Testing the proto methods", function() {
 		expect(myList.length()).to.equal(1);
 	});
 
-	it("Testing the length method", function() {
-		//
+	it("Testing the remove method", function() {
+		myList.remove(myList.first());
+		expect(myList.isEmpty()).to.equal(true);
+		myList.push(1);
+		myList.push(2);
+		myList.push(3);
+		myList.push(4);
+		myList.remove(myList.first().next);
+		expect(myList.length()).to.equal(3);
 	});
 
 	it("Testing the length method", function() {
