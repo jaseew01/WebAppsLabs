@@ -72,7 +72,7 @@ proto = {
 
    redoableIterator: function() {
       if (canRedo()) {
-         return this.list.iterateFrom(this.current);
+         return this.list.iterateFrom(this.current.next);
       } else {
          throw new Error("no more commands");
       }
