@@ -36,6 +36,15 @@ proto = {
    			return true;
    		}
    		return false;
+   },
+   canUndo: function() {
+   		//
+   },
+   redo: function() {
+   		if(this.current.next === null) {
+   			throw new Error("no more commands");
+   		}
+   		this.current = this.current.next;
    }
 };
 
