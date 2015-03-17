@@ -151,6 +151,12 @@ proto = {
    toArray: function() {
       var itr = this.iterator();
       return itr.toArray();
+   },
+
+   iterateFrom: function(element) {
+      var itr = this.iterator(), index;
+      index = itr.find(element);
+      return itr.sequence(index, this.length(), 1);
    }
 };
 
