@@ -144,19 +144,13 @@ proto = {
    },
 
    forEach: function(f) {
-      var temp = this.sentinel.next, len = this.length(), i;
-      for (i = 0; i < len; i += 1) {
-         this.iterator().forEach(f(temp.value));
-         temp = temp.next;
-      }
+      var itr = this.iterator();
+      this.itr.forEach(f);
       return this;
    },
 
    toArray: function() {
-      var temp = this.sentinel.next, len = this.length(), i;
-      for (i = 0; i < len; i += 1) {
-         // not sure how to implement
-      }
+      //body
    }
 };
 
