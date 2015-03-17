@@ -144,9 +144,9 @@ proto = {
    iterator: function() {
       var itr;
       if (this.isEmpty()) {
-         itr = Iterator.new(undefined, false);
+         itr = Iterator.new(this.sentinel.next, false);
       } else {
-         itr = Iterator.new(this.sentinel, true);
+         itr = Iterator.new(this.sentinel.next, true);
       }
       return itr;
    },
