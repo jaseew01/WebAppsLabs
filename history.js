@@ -38,7 +38,10 @@ proto = {
    		return false;
    },
    canUndo: function() {
-   		//
+   		if(this.list.isLast(this.current)) {
+            return true;
+         }
+         return false;
    },
    redo: function() {
    		if(this.current.next === null) {
