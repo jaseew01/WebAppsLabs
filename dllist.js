@@ -145,12 +145,12 @@ proto = {
 
    forEach: function(f) {
       var itr = this.iterator();
-      this.itr.forEach(f);
-      return this;
+      return itr.forEach(f);
    },
 
    toArray: function() {
-      //body
+      var itr = this.iterator();
+      return itr.toArray();
    }
 };
 
