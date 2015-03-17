@@ -31,18 +31,21 @@ proto = {
    		this.list.insertAt(command, this.current);
    		this.list.endAt(command);
    },
+
    canRedo: function() {
    		if(!this.list.isLast(this.current)) {
    			return true;
    		}
    		return false;
    },
+
    canUndo: function() {
    		if(this.list.isLast(this.current)) {
             return true;
          }
          return false;
    },
+
    redo: function() {
    		if(this.current.next === null) {
    			throw new Error("no more commands");
@@ -50,12 +53,17 @@ proto = {
    		this.current = this.current.next;
    		this.current.execute();
    },
+
    undo: function() {
    		if(this.current === null) {
    			throw new Error("no more commmands");
    		}
    		this.current.unexecute();
    		this.current = this.current.prev;
+   },
+
+   undoableIterator: function() {
+      return this.list.reverseIteratorFrom(this.current);
    }
 };
 
