@@ -134,7 +134,13 @@ proto = {
    },
 
    iterator: function() {
-      return Iterator;
+      var itr;
+      if (this.isEmpty()) {
+         itr = Iterator.new(undefined, false);
+      } else {
+         itr = Iterator.new(this.sentinel, true);
+      }
+      return itr;
    },
 
    forEach: function(f) {

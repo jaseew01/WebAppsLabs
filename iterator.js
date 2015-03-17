@@ -320,6 +320,4 @@ var Iterator = (function() {
     return Iterator;
 }());
 
-try { module.export = Iterator; } catch (err) {}
-
-
+try { modules.export = Iterator; } catch (err) {}
