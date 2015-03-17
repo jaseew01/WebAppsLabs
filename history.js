@@ -30,7 +30,12 @@ proto = {
    		command.execute();
    		this.list.insertAt(command, this.current);
    		this.list.endAt(command);
-   		// ?this.current = command;?
+   },
+   canRedo: function() {
+   		if(!this.list.isLast(this.current)) {
+   			return true;
+   		}
+   		return false;
    }
 };
 
