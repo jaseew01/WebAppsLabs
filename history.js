@@ -15,6 +15,7 @@ DLList = require("./dllist");
 function makeNewHistory() {
    var hist = Object.create(proto);
    hist.list = DLList.new();
+   //the command that is the last to have been executed
    hist.current = null;
    return hist;
 }
@@ -25,11 +26,13 @@ function makeNewHistory() {
  */
 
 proto = {
-   // Add instance methods here
-
+   add: function(command) {
+   		command.execute();
+   		this.list.insertAt(command, this.current);
+   		this.list.endAt(command);
+   		// ?this.current = command;?
+   }
 };
-
-
 
 // DO NOT MODIFY ANYTHING BELOW THIS LINE
 CmdHistory = {
