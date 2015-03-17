@@ -37,7 +37,7 @@ proto = {
    },
 
    length: function() {
-      var temp = this.sentinel, acc;
+      var temp = this.sentinel, acc = 0;
       while (temp.next !== this.sentinel) {
          acc += 1;
          temp = temp.next;
@@ -47,14 +47,14 @@ proto = {
 
    first: function() {
       if (this.isEmpty()) {
-         throw "List is empty";
+         throw new Error("List is empty");
       }
       return this.sentinel.next;
    },
 
    last: function() {
       if (this.isEmpty()) {
-         throw "List is empty";
+         throw new Error("List is empty");
       }
       return this.sentinel.prev;
    },
@@ -80,9 +80,10 @@ proto = {
    push: function(value) {
       var newElem;
       newElem = { value: value };
-      newElem.next = this.sentinel;
+      this.sentinel.prev.next = newElem;
       newElem.prev = this.sentinel.prev;
       this.sentinel.prev = newElem;
+      newElem.next = this.sentinel;
       return newElem;
    },
 
@@ -100,7 +101,7 @@ proto = {
    pop: function() {
       var temp = this.sentinel.prev;
       if (this.isEmpty()) {
-         throw "List is empty.";
+         throw new Error("List is empty");
       } else {
          this.sentinel.prev = this.sentinel.prev.prev;
          this.sentinel.prev.prev.next = this.sentinel;
@@ -111,7 +112,7 @@ proto = {
    shift: function() {
       var temp = this.sentinel.next;
       if (this.isEmpty()) {
-         throw "List is empty.";
+         throw new Error("List is empty");
       } else {
          this.sentinel.next = this.sentinel.next.next;
          this.sentinel.next.next.prev = this.sentinel;
