@@ -64,6 +64,7 @@ proto = {
       newElem = { value: value };
       newElem.next = element.next;
       newElem.prev = element;
+      element.next.prev = newElem;
       element.next = newElem;
       return newElem;
    },

@@ -39,12 +39,15 @@ describe("Testing the proto methods", function() {
 		// expect(myList2.last()).to.throw(Error);
 	});
 
-	it("Testing the length method", function() {
-		//
+	it("Testing the insertAt method", function() {
+		myList.insertAt(3, myList.first());
+		expect(myList.length()).to.equal(3);
+		myList.insertAt(4, myList.last().prev);
+		expect(myList.length()).to.equal(4);
 	});
 
-	it("Testing the length method", function() {
-		//
+	it("Testing the unshift method", function() {
+		// 
 	});
 
 	it("Testing the length method", function() {
