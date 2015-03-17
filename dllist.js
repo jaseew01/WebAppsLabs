@@ -75,6 +75,11 @@ proto = {
       newElem.next = this.sentinel.next;
       newElem.prev = this.sentinel;
       this.sentinel.next = newElem;
+      if (this.sentinel.prev === this.sentinel) {
+         this.sentinel.prev = newElem;
+         return newElem;
+      }
+
       return newElem;
    },
 
@@ -91,6 +96,7 @@ proto = {
    endAt: function(element) {
       element.next = this.sentinel;
       this.sentinel.prev = element;
+      return this;
    },
 
    remove: function(element) {

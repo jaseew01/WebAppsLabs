@@ -47,11 +47,17 @@ describe("Testing the proto methods", function() {
 	});
 
 	it("Testing the unshift method", function() {
-		// 
+		myList.unshift(5);
+		expect(myList.length()).to.equal(5);
+		myList2.unshift(1);
+		expect(myList2.length()).to.equal(1);
 	});
 
-	it("Testing the length method", function() {
-		//
+	it("Testing the endAt method", function() {
+		myList.endAt(myList.first().next);
+		expect(myList.length()).to.equal(2);
+		myList.endAt(myList.first());
+		expect(myList.length()).to.equal(1);
 	});
 
 	it("Testing the length method", function() {
