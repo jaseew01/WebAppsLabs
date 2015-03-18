@@ -63,7 +63,7 @@ proto = {
    },
 
    undoableIterator: function() {
-      if (canUndo()) {
+      if (this.canUndo()) {
          return this.list.reverseIteratorFrom(this.current);
       } else {
          throw new Error("no more commands");
@@ -71,7 +71,7 @@ proto = {
    },
 
    redoableIterator: function() {
-      if (canRedo()) {
+      if (this.canRedo()) {
          return this.list.iterateFrom(this.current.next);
       } else {
          throw new Error("no more commands");
