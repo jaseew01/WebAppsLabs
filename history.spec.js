@@ -29,3 +29,16 @@ function mockCommand() {
 }
 
 // ADD YOUR TESTS HERE
+
+var history1 = CmdHistory.new();
+
+describe("Testing the proto methods", function () {
+	"use strict";
+
+	it("Testing the add method", function() {
+		var temp = mockCommand();
+		history1.add(temp);
+		expect(history1.list.last().value).to.equal(temp);
+		expect(Log.get().pop()).to.equal("command 1 executed");
+	});
+});

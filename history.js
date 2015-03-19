@@ -28,8 +28,13 @@ function makeNewHistory() {
 proto = {
    add: function(command) {
    		command.execute();
-   		this.list.insertAt(command, this.current);
-   		this.list.endAt(command);
+         if (this.list.isEmpty()) {
+            this.current = command;
+            this.list.push(this.current);
+         } else {
+            this.list.insertAt(command, this.current);
+            this.list.endAt(command);
+         }
    },
 
    canRedo: function() {
