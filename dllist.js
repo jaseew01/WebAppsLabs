@@ -6,7 +6,7 @@
 
 var Iterator, DLList, proto;
 
-Iterator = require("./iterator");
+Iterator = require("./iterator.js");
 
 /*
  *       Constructors
@@ -144,9 +144,10 @@ proto = {
    iterator: function() {
       var itr;
       if (this.isEmpty()) {
-         itr = Iterator.new(this.sentinel.next, false);
+         itr = Iterator.fromArray([]);
       } else {
-         itr = Iterator.new(this.sentinel.next, true);
+         console.log(Iterator);
+         itr = Iterator.sequence(1, this.length(), 1);
       }
       return itr;
    },
