@@ -31,6 +31,7 @@ function mockCommand() {
 // ADD YOUR TESTS HERE
 
 var history1 = CmdHistory.new();
+var history2 = CmdHistory.new();
 
 describe("Testing the proto methods", function () {
 	"use strict";
@@ -52,5 +53,11 @@ describe("Testing the proto methods", function () {
 		expect(history1.canRedo()).to.equal(false);
 		history1.list.push(temp3);
 		expect(history1.canRedo()).to.equal(true);
+		history1.list.pop();
+	});
+
+	it("Testing the canUndo method", function() {
+		expect(history1.canUndo()).to.equal(true);
+		expect(history2.canUndo()).to.equal(false);
 	});
 });

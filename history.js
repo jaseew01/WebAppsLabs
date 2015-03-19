@@ -44,10 +44,10 @@ proto = {
    },
 
    canUndo: function() {
-   		if(this.list.isLast(this.current)) {
-            return true;
+   		if(this.list.isEmpty()) {
+            return false;
          }
-         return false;
+         return true;
    },
 
    redo: function() {
