@@ -32,6 +32,7 @@ function mockCommand() {
 
 var history1 = CmdHistory.new();
 var history2 = CmdHistory.new();
+var history3 = CmdHistory.new();
 
 describe("Testing the proto methods", function () {
 	"use strict";
@@ -59,5 +60,16 @@ describe("Testing the proto methods", function () {
 	it("Testing the canUndo method", function() {
 		expect(history1.canUndo()).to.equal(true);
 		expect(history2.canUndo()).to.equal(false);
+	});
+
+	it("Testing the redo and undo methods", function() {
+		var cmd4 = mockCommand(), cmd5 = mockCommand(), cmd6 = mockCommand();
+		history2.add(cmd4);
+		history2.add(cmd5);
+		history2.add(cmd6);
+		history2.undo();
+		expect(history2.current.value).to.equal(cmd5);
+		history2.redo();
+		expect(history2.current.value).to.equal(cmd6);
 	});
 });
