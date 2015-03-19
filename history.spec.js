@@ -36,9 +36,14 @@ describe("Testing the proto methods", function () {
 	"use strict";
 
 	it("Testing the add method", function() {
-		var temp = mockCommand();
+		var temp = mockCommand(), temp2;
 		history1.add(temp);
 		expect(history1.list.last().value).to.equal(temp);
 		expect(Log.get().pop()).to.equal("command 1 executed");
+
+		temp2 = mockCommand();
+		history1.add(temp2);
+		expect(history1.list.last().value).to.equal(temp2);
+		expect(Log.get().pop()).to.equal("command 2 executed");
 	});
 });

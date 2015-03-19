@@ -29,11 +29,10 @@ proto = {
    add: function(command) {
    		command.execute();
          if (this.list.isEmpty()) {
-            this.current = command;
-            this.list.push(this.current);
+            this.current = this.list.push(command);
          } else {
-            this.list.insertAt(command, this.current);
-            this.list.endAt(command);
+            this.current = this.list.insertAt(command, this.current);
+            this.list.endAt(this.current);
          }
    },
 
