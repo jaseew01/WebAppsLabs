@@ -46,4 +46,11 @@ describe("Testing the proto methods", function () {
 		expect(history1.list.last().value).to.equal(temp2);
 		expect(Log.get().pop()).to.equal("command 2 executed");
 	});
+
+	it("Testing the canRedo method", function() {
+		var temp3 = mockCommand();
+		expect(history1.canRedo()).to.equal(false);
+		history1.list.push(temp3);
+		expect(history1.canRedo()).to.equal(true);
+	});
 });
